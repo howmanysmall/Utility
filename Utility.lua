@@ -25,24 +25,22 @@ local function GetDescendants(Object)
 end
 
 local Utility = {
-	GetChildren = GetChildren;
 	GetDescendants = GetDescendants;
 }
 
-local Key = "CallOnChildren"
-local GetFunction = GetChildren
-for a = 1, 2 do
+for Key, GetFunction in next, {CallOnChildren = GetChildren, CallOnDescendants = GetDescendants} do
 	Utility[Key] = function(Object, FunctionToCall)
-		assert(typeof(Object) == "Instance", "Object is not an Instance")
-		assert(type(FunctionToCall) == "function", "FunctionToCall is not a function")
-
-		local Objects = GetFunction(Object)
-		for a = 1, #Objects do
-			FunctionToCall(Objects[a])
+		if typeof(Object) ~= "Instance" then
+			error("Object is not an Instance")
+		elseif type(FunctionToCall) ~= "function" then
+			error("FunctionToCall is not a function")
+		else
+			local Objects = GetFunction(Object)
+			for a = 1, #Objects do
+				FunctionToCall(Objects[a])
+			end
 		end
 	end
-	Key = "CallOnDescendants"
-	GetFunction = GetDescendants
 end
 
 return Utility
