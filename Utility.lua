@@ -10,17 +10,19 @@ local function GetDescendants(Object)
 		local Descendants = GetChildren(Object)
 		local NumDescendants = #Descendants
 		local Count = 0
-
-		repeat
-			Count = Count + 1
-			local GrandChildren = GetChildren(Descendants[Count])
-			local NumGrandChildren = #GrandChildren
-			for a = 1, NumGrandChildren do
-				Descendants[NumDescendants + a] = GrandChildren[a]
-			end
-			NumDescendants = NumDescendants + NumGrandChildren
-		until Count == NumDescendants
-
+		
+		if NumDescendants > 0 then
+			repeat
+				Count = Count + 1
+				local GrandChildren = GetChildren(Descendants[Count])
+				local NumGrandChildren = #GrandChildren
+				for a = 1, NumGrandChildren do
+					Descendants[NumDescendants + a] = GrandChildren[a]
+				end
+				NumDescendants = NumDescendants + NumGrandChildren
+			until Count == NumDescendants
+		end
+		
 		return Descendants
 	else
 		error("Object is not an Instance")
