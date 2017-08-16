@@ -1,6 +1,20 @@
 -- @author devSparkle
 -- @author Validark
 
+--[[
+	Utility.GetDescendants(Object)
+	Much like GetChildren, except GetDescendants efficiently gets the children of children, and so on
+
+	Utility.CallOnChildren(Object, Function)
+	Calls Function on every child of Object
+
+	Utility.CallOnDescendants(Object, Function)
+	Calls Function on every descendant of Object
+
+	Utility.Retrieve(Parent, Name, Class)
+	returns FindFirstChild(Parent, Name) or generates a Class of Name in Parent
+--]]
+
 local GetChildren = game.GetChildren
 
 local function GetDescendants(Object)
