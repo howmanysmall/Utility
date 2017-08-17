@@ -11,6 +11,8 @@ Calls Function on every child of Object
 
 Utility.CallOnDescendants(Object, Function)
 Calls Function on every descendant of Object
-```
 
+Utility.Retrieve(Parent, Name, Class)
+returns FindFirstChild(Parent, Name) or generates a Class of Name in Parent
+```
 As you can see in the source code, the CallOn functions are little more than basic for loop wrappers, but `GetDescendants` is a very important function that should be built-in to the platform but isn't
