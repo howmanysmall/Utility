@@ -52,12 +52,9 @@ local function Retrieve(Parent, Name, Class)
 	return Object, InstanceCreated
 end
 
-local Utility = {
-	GetDescendants = GetDescendants;
-	Retrieve = Retrieve;
-}
+local Utility = { GetDescendants = GetDescendants, Retrieve = Retrieve }
 
-for FunctionName, GetFunction in next, {CallOnChildren = GetChildren, CallOnDescendants = GetDescendants} do
+for FunctionName, GetFunction in next, { CallOnChildren = GetChildren, CallOnDescendants = GetDescendants } do
 	Utility[FunctionName] = function(Object, FunctionToCall)
 		if typeof(Object) ~= "Instance" then error(("[Utility] bad argument #1 to '%s' (instance expected, got %s)"):format(FunctionName, typeof(Object):lower()), 0) end
 
